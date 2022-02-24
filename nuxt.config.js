@@ -21,10 +21,20 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '@/assets/css/main.css',
   ],
+
+  googleFonts: {
+    families: {
+      'Nunito+Sans': true,
+      'Squada+One': true,
+      'Material+Icons': true,
+    }
+  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+     { src: '~/plugins/vee-validate.js', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -34,6 +44,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxt/postcss8',
+    '@nuxtjs/google-fonts',
     '@nuxtjs/eslint-module',
   ],
 
@@ -41,12 +52,42 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/auth-next',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
   ],
 
+  auth: {
+    strategies: {
+      laravelSanctum: {
+        provider: 'laravel/sanctum',
+        url: 'http://localhost:8080'
+      }
+    },
+    redirect: {
+      logout: '/login',
+      home: '/projects',
+    },
+    plugins: [
+      '@/plugins/auth.js'
+    ]
+  },
+
+  proxy: {
+    '/api': 'http://localhost:8080',
+    '/auth': {
+      target: 'http://localhost:8080',
+      pathRewrite: {
+        '^/auth/': ''
+      }
+    }
+  },
+
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    proxy: true,
+    credentials: true,
+  },
 
   // Content module configuration: https://go.nuxtjs.dev/config-content
   content: {},
@@ -59,5 +100,8 @@ export default {
         autoprefixer: {},
       },
     },
+    transpile: [
+      "vee-validate/dist/rules"
+    ],
   }
 }
