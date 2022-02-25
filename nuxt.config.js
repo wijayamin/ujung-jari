@@ -66,7 +66,7 @@ export default {
     },
     redirect: {
       logout: '/login',
-      home: '/projects',
+      home: '/console',
     },
     plugins: [
       '@/plugins/auth.js'
@@ -75,6 +75,7 @@ export default {
 
   proxy: {
     '/api': 'http://localhost:8080',
+    '/user': 'http://localhost:8080',
     '/auth': {
       target: 'http://localhost:8080',
       pathRewrite: {

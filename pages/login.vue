@@ -18,34 +18,36 @@
       <span class="px-2 text-sm text-gray-600">atau</span>
       <hr class="mt-2.5 w-full border border-gray-400" />
     </div>
-    <ValidationObserver v-slot="{ invalid }">
-      <FormInput
-        v-model="email"
-        type="email"
-        rules="required|email"
-        placeholder="Alamat email anda"
-        name="Alamat Email"
-      >
-        Alamat email
-      </FormInput>
-      <FormInput
-        v-model="password"
-        type="password"
-        rules="required"
-        name="Password"
-        placeholder="Password anda"
-      >
-        Password
-      </FormInput>
-      <div class="py-3">
-        <button
-          class="h-10 w-full rounded-md border border-gray-200 bg-slate-800 text-white shadow-md disabled:bg-slate-200 disabled:text-slate-500"
-          :disabled="invalid"
-          @click="signInWithEmail"
+    <ValidationObserver v-slot="{ invalid }" slim>
+      <form @submit.prevent="signInWithEmail">
+        <FormInput
+          v-model="email"
+          type="email"
+          rules="required|email"
+          placeholder="Alamat email anda"
+          name="Alamat Email"
         >
-          MASUK
-        </button>
-      </div>
+          Alamat email
+        </FormInput>
+        <FormInput
+          v-model="password"
+          type="password"
+          rules="required"
+          name="Password"
+          placeholder="Password anda"
+        >
+          Password
+        </FormInput>
+        <div class="py-3">
+          <button
+            class="h-10 w-full rounded-md border border-gray-200 bg-slate-800 text-white shadow-md disabled:bg-slate-200 disabled:text-slate-500"
+            :disabled="invalid"
+            type="submit"
+          >
+            MASUK
+          </button>
+        </div>
+      </form>
     </ValidationObserver>
     <span class="py-2 text-sm text-slate-700 underline">Lupa password?</span>
 
