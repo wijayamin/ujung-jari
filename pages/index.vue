@@ -27,7 +27,6 @@
 <script>
 export default {
   layout: 'console',
-  middleware: 'auth',
   data() {
     return {
       newModal: true,

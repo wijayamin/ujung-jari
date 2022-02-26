@@ -72,6 +72,7 @@
 <script>
 export default {
   layout: 'auth',
+  auth: 'guest',
   data() {
     return {
       email: '',

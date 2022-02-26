@@ -91,6 +91,7 @@
 <script>
 export default {
   layout: 'auth',
+  auth: 'guest',
   data() {
     return {
       name: '',
@@ -103,13 +104,12 @@ export default {
   methods: {
     async signUpWithEmail() {
       this.authError = false
-      const user = await this.$axios.post('/auth/register', {
+      await this.$axios.post('/auth/register', {
         name: 'a',
         email: this.email,
         password: this.password,
         password_confirmation: this.password_confirmation,
       })
-      console.log(user)
     },
   },
 }
