@@ -1,6 +1,6 @@
 <template>
   <div class="full-width min-h-screen bg-gray-200">
-    <ConsoleAdminNavBar @show-profile-menu="toggleProfileMenu" />
+    <NavBar @show-profile-menu="toggleProfileMenu" />
     <ProfileMenu
       v-show="profileMenu"
       @toggle-profile-menu="toggleProfileMenu"
@@ -8,7 +8,9 @@
     <div class="relative -mb-44 h-72 bg-slate-800">
       <div class="banner absolute h-72 w-full"></div>
     </div>
-    <Nuxt />
+    <div class="relative z-30 px-60">
+      <Nuxt />
+    </div>
   </div>
 </template>
 
