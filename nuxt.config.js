@@ -64,10 +64,6 @@ export default {
         url: 'http://localhost:8080'
       }
     },
-    redirect: {
-      logout: '/login',
-      home: '/console',
-    },
     plugins: [
       '@/plugins/auth.js'
     ]
